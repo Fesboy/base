@@ -1,22 +1,20 @@
 const path = require("path");
 const webpack = require("webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: path.resolve(__dirname, "../src/index.js"),
+  mode: "production",
+  entry: {
+    vendors: ["react", "react-dom", "antd"]
+  },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        include: /src/,
-        use: "babel-loader"
-      },
-      {
-        test: /\.less$/,
+        test: /\.(le|c)ss$/,
         include: /src/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -53,20 +51,19 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: path.resolve(__dirname, "../src/document.html")
+    new webpack.DllPlugin({
+      context: __dirname,
+      path: path.resolve(__dirname, "../dll/[name]-manifest.json"),
+      name: "[name]_[hash]"
     }),
-    new webpack.NamedModulesPlugin()
+    new MiniCssExtractPlugin({
+      filename: "vendors.css"
+    })
   ],
-  resolve: {
-    extensions: [".js"],
-    alias: {
-      "@": path.resolve(__dirname, "../src")
-    }
-  },
   output: {
-    path: path.resolve(__dirname, "../dist"),
-    filename: "bundle.[contenthash:8].js"
+    path: path.resolve(__dirname, "../dll"),
+    filename: "vendors.js",
+    library: "[name]_[hash]",
+    libraryTarget: "this"
   }
 };

@@ -1,8 +1,9 @@
 const merge = require("webpack-merge");
 const webpack = require("webpack");
-const common = require("./webpack.common");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const base = require("./webpack.base");
 
-module.exports = merge(common, {
+module.exports = merge(base, {
   mode: "development",
   devtool: "cheap-module-eval-source-map",
   devServer: {
@@ -10,8 +11,18 @@ module.exports = merge(common, {
     hot: true,
     historyApiFallback: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "bundle.css",
+      chunkFilename: "async.[name].css"
+    }),
+    new webpack.DefinePlugin({
+      ENV: JSON.stringify("DEV")
+    })
+  ],
   output: {
-    filename: "bundle.js"
+    filename: "bundle.js",
+    chunkFilename: "async.[name].js"
   }
 });

@@ -60,5 +60,9 @@ typings/
 # next.js build output
 .next
 
+# development
+build/*
+dll
+
 # production
 /dist
