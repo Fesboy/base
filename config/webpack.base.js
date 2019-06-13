@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const AddAssetHtmlWebpackPlugin = require("add-asset-html-webpack-plugin");
 const HappyPack = require("happypack");
 const os = require("os");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const happyPackThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
@@ -80,7 +81,13 @@ module.exports = {
     new webpack.DllReferencePlugin({
       context: __dirname,
       manifest: path.resolve(__dirname, "../dll/vendors-manifest.json")
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, "../public"),
+        to: path.resolve(__dirname, "../dist")
+      }
+    ])
   ],
   resolve: {
     extensions: [".js"],

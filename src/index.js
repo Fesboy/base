@@ -12,7 +12,7 @@ if (module.hot) {
   });
 }
 
-if ("serviceWorker" in navigator) {
+if (ENV === "PROD" && "serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("/service-worker.js")
