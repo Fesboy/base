@@ -17,8 +17,13 @@ module.exports = {
       {
         test: /\.jsx?$/,
         include: /src/,
-        // use: "babel-loader"
-        use: "happypack/loader?id=happyBabel"
+        use: "babel-loader"
+        // use: "happypack/loader?id=happyBabel"
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       },
       {
         test: /\.less$/,
@@ -61,12 +66,12 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HappyPack({
-      id: "happyBabel",
-      loaders: ["babel-loader?cacheDirectory=true"],
-      threadPool: happyPackThreadPool,
-      verbose: true
-    }),
+    // new HappyPack({
+    //   id: "happyBabel",
+    //   loaders: ["babel-loader?cacheDirectory=true"],
+    //   threadPool: happyPackThreadPool,
+    //   verbose: true
+    // }),
     new webpack.NamedModulesPlugin(),
     new HtmlWebpackPlugin({
       filename: "index.html",

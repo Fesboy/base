@@ -4,9 +4,11 @@
   height: 100px;
   background-image: url("../../assets/images/avatar.jpg");
   background-size: 100%;
-}
-
-.useless {
-  color: red;
-  background: beige;
+  cursor: pointer;
+  &.round {
+    border-radius: 50%;
+  }
+  &.border {
+    border: 1px solid #ddd;
+  }
 }
