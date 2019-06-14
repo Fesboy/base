@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import { Avatar, Menu } from "@/components";
 import styles from "./index.less";
 
-function Header({ menus, toggleMenu }) {
+function Header({ menus }) {
   return (
     <div className={styles.header}>
       <div>
-        <Menu menus={menus} toggleMenu={toggleMenu} />
+        <Menu menus={menus} />
       </div>
       <div className={styles.right}>
         <Avatar size={30} round border />
@@ -18,13 +18,11 @@ function Header({ menus, toggleMenu }) {
 }
 
 Header.propTypes = {
-  menus: PropTypes.array,
-  toggleMenu: PropTypes.func
+  menus: PropTypes.array
 };
 
 Header.defaultProps = {
-  menus: [],
-  toggleMenu: () => {}
+  menus: []
 };
 
 export default Header;

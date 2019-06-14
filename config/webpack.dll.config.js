@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   mode: "production",
   entry: {
-    vendors: ["react", "react-dom", "prop-types", "antd"]
+    vendors: ["react", "react-dom", "react-router-dom", "prop-types", "antd"]
   },
   module: {
     rules: [

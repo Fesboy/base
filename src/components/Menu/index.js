@@ -47,15 +47,11 @@ function HeaderMenu({ menus }) {
 }
 
 HeaderMenu.propTypes = {
-  menus: PropTypes.array,
-  pathname: PropTypes.string,
-  toggleMenu: PropTypes.func
+  menus: PropTypes.array
 };
 
 HeaderMenu.defaultProps = {
-  menus: [],
-  pathname: "/",
-  toggleMenu: () => {}
+  menus: []
 };
 
 export default React.memo(HeaderMenu);
