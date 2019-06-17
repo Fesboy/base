@@ -1,7 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
 
-function List() {
-  return <h3>list page</h3>;
+function List({ list }) {
+  return <h3>list page: {list.list.join("，")}</h3>;
 }
 
-export default List;
+export default connect(({ list }) => ({ list }))(List);
