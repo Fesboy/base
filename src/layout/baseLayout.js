@@ -8,7 +8,7 @@ const { Header } = Layout;
 function BaseLayout({ children }) {
   return (
     <Layout>
-      <Header menus={menus} />
+      {/* <Header menus={menus} /> */}
       <Suspense fallback={LazyFallback}>{children}</Suspense>
     </Layout>
   );

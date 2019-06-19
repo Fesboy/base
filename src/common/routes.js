@@ -7,9 +7,14 @@ const routeConfig = [
     component: () => import("../pages/home")
   },
   {
-    path: "/list",
-    name: "列表",
-    component: () => import("../pages/list")
+    path: "/message",
+    name: "评论页",
+    component: () => import("../pages/message")
+  },
+  {
+    path: "/user",
+    name: "登录页",
+    component: () => import("../pages/user")
   }
 ];
 
